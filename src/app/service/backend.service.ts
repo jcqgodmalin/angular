@@ -23,7 +23,7 @@ export class BackendService {
   */
   public getAllOrders() : Observable<Order[]> {
 
-    return this.httpClient.get<Order[]>(`${environment.api_orders_url}`);
+    return this.httpClient.get<Order[]>(`${environment.api_orders_url}/orders`);
 
   }
 
@@ -34,7 +34,7 @@ export class BackendService {
   */
   public addOrder(order : Order) : Observable<void> {
 
-    return this.httpClient.post<void>(`${environment.api_orders_url}`, order);
+    return this.httpClient.post<void>(`${environment.api_orders_url}/add`, order);
 
   }
 
@@ -45,7 +45,7 @@ export class BackendService {
   */
   public updateOrder(order : Order) : Observable<void> {
 
-    return this.httpClient.put<void>(`${environment.api_orders_url}`, order);
+    return this.httpClient.put<void>(`${environment.api_orders_url}/update/${order.id}`, order);
 
   }
 
@@ -56,7 +56,7 @@ export class BackendService {
   */
   public deleteOrder(order : Order) : Observable<void> {
 
-    return this.httpClient.post<void>(`${environment.api_orders_url}/delete`,order);
+    return this.httpClient.delete<void>(`${environment.api_orders_url}/delete/${order.id}`);
 
   }
 
@@ -69,13 +69,13 @@ export class BackendService {
 
   public getTotalRegularBilling() : Observable<any> {
 
-    return this.httpClient.get<any>(`${environment.api_billing_url}/regular`);
+    return this.httpClient.get<any>(`${environment.api_billing_url}/billing/regular`);
 
   }
 
   public getTotalDiscountedBilling() : Observable<any> {
 
-    return this.httpClient.get<any>(`${environment.api_billing_url}/discounted`);
+    return this.httpClient.get<any>(`${environment.api_billing_url}/billing/discounted`);
 
   }
 
